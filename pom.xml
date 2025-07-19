@@ -116,6 +116,8 @@
                     <reflectionList>
                         <list>com.mycompany.sample.MainApp</list>
                         <list>com.mycompany.sample.MainScreenController</list>
+                        <list>com.mycompany.sample.AddComputerController</list>
+                        <list>com.mycompany.sample.Computer</list>
                     </reflectionList>
                 </configuration>
             </plugin>

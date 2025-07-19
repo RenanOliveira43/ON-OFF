@@ -23,8 +23,8 @@ public class MainApp extends Application {
         //     setScene("/telaEscolhaUsuario.fxml");
         // }
 
-        
-        setScene("/mainScreen.fxml");
+
+        setScene("/addComputer.fxml");
         primaryStage.show();
     }
     

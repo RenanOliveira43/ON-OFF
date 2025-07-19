@@ -27,10 +27,6 @@ public class Computer {
 
     @Override
     public String toString() {
-        return "Computer{" +
-                "MACAdrr='" + MACAdrr + '\'' +
-                ", Ip='" + Ip + '\'' +
-                '}';
+        return "Computer{" + "MACAdrr='" + MACAdrr + '\'' + ", Ip='" + Ip + '\'' +'}';
     }
-
 }

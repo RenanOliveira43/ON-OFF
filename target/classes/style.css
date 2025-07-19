@@ -85,7 +85,7 @@
     -fx-background-radius: 20px;    
 }
 
-#vboxSaldo, #gastoVbox, #passagemVbox, #diasRestantesVbox, #gastoTotalVbox, #centerContainer, #vboxPassagem, #vboxConfig {
+#onVbox, #offVbox, #statusVbox, #lockVbox {
     -fx-background-color: #555555;
     -fx-background-radius: 15px;
     -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 5, 0, 0, 2);

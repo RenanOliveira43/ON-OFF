@@ -11,7 +11,7 @@
     <center>
         <VBox alignment="CENTER" spacing="20.0">
          <children>
-            <VBox fx:id="gastoVbox" prefHeight="100.0" prefWidth="330.0" spacing="4.0">
+            <VBox fx:id="statusVbox" prefHeight="100.0" prefWidth="100.0" spacing="4.0">
                <VBox.margin>
                   <Insets left="20.0" right="20.0" />
                </VBox.margin>
@@ -19,15 +19,7 @@
                   <Insets left="20.0" />
                </padding>
             </VBox>
-            <VBox fx:id="gastoTotalVbox" prefHeight="100.0" prefWidth="330.0" spacing="4.0">
-               <padding>
-                  <Insets left="20.0" />
-               </padding>
-               <VBox.margin>
-                  <Insets left="20.0" right="20.0" />
-               </VBox.margin>
-            </VBox>
-            <VBox fx:id="passagemVbox" prefHeight="100.0" prefWidth="330.0" spacing="4.0">
+            <VBox fx:id="onVbox" onMouseClicked="#teste" prefHeight="100.0" prefWidth="330.0" spacing="4.0">
                <VBox.margin>
                   <Insets left="20.0" right="20.0" />
                </VBox.margin>
@@ -35,7 +27,15 @@
                   <Insets left="20.0" />
                </padding>
             </VBox>
-            <VBox fx:id="diasRestantesVbox" prefHeight="100.0" prefWidth="100.0" spacing="4.0">
+            <VBox fx:id="offVbox" prefHeight="100.0" prefWidth="330.0" spacing="4.0">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets left="20.0" right="20.0" />
+               </VBox.margin>
+            </VBox>
+            <VBox fx:id="lockVbox" prefHeight="100.0" prefWidth="330.0" spacing="4.0">
                <VBox.margin>
                   <Insets left="20.0" right="20.0" />
                </VBox.margin>
