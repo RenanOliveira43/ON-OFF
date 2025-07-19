@@ -18,17 +18,17 @@ public class MainScreenController {
 
     @FXML
     public void on() {
-
+        computer.turnOn();
     }
 
     @FXML
     public void off() {
-
+        computer.turnOff();
     }
 
     @FXML
     public void lock() {
-
+        computer.lock();
     }
 
     @FXML

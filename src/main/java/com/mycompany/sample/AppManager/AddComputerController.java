@@ -17,7 +17,7 @@ public class AddComputerController {
         if (!MainApp.db.getComputers().isEmpty()) {
             computer = MainApp.db.getComputers().get(0);
             namePCTextField.setText(computer.getNamePC());
-            macTextField.setText(computer.getMACAdrr());
+            macTextField.setText(computer.getMacAddr());
             ipTextField.setText(computer.getIp());
             confirmLabel.setText("Computador carregado para edição.");
         }
@@ -47,7 +47,7 @@ public class AddComputerController {
     private void editComputer() {
         try {
             computer.setNamePC(namePCTextField.getText());
-            computer.setMACAdrr(macTextField.getText());
+            computer.setMacAddr(macTextField.getText());
             computer.setIp(ipTextField.getText());
             MainApp.db.update(computer);
             
@@ -60,6 +60,11 @@ public class AddComputerController {
 
     @FXML
     private void goToMainScreen() {
-        MainApp.setScene("/mainScreen.fxml");
+        if (MainApp.db.getComputers().isEmpty()){
+            confirmLabel.setText("Por favor, crie um computador primeiro.");
+        }
+        else {
+            MainApp.setScene("/mainScreen.fxml");
+        }
     }
 }
