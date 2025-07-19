@@ -71,6 +71,7 @@ apex-scripts/*
 *.bak
 
 target/
+data/
 
 .vscode
 
