@@ -9,13 +9,17 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <View maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="370.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.sample.AppManager.AddComputerController">
     <center>
       <VBox alignment="CENTER">
          <children>
               <VBox alignment="CENTER" spacing="20.0">
-               <Label fx:id="confirmLabel" />
+               <Label fx:id="confirmLabel">
+                  <font>
+                     <Font size="10.0" />
+                  </font></Label>
                <TextField fx:id="namePCTextField" promptText="Nome PC">
                   <VBox.margin>
                      <Insets left="35.0" right="35.0" />
@@ -34,6 +38,7 @@
             <HBox alignment="CENTER" prefHeight="100.0" spacing="10.0">
                <children>
                   <Button mnemonicParsing="false" onAction="#createOrEditComputer" text="Adicionar" />
+                  <Button mnemonicParsing="false" onAction="#goToMainScreen" text="Next" />
                </children>
             </HBox>
          </children>
@@ -47,10 +52,6 @@
       </StackPane>
    </top>
    <bottom>
-      <StackPane prefHeight="50.0" styleClass="footer" BorderPane.alignment="CENTER">
-         <children>
-            <Button mnemonicParsing="false" onAction="#goToMainScreen" text="Next" />
-         </children>
-      </StackPane>
+      <StackPane prefHeight="50.0" styleClass="footer" BorderPane.alignment="CENTER" />
    </bottom>
 </View>

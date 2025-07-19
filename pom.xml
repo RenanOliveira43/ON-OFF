@@ -9,7 +9,7 @@
     <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
-    <name>ON/OFF</name>
+    <name>ON-OFF</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -110,8 +110,12 @@
                 <artifactId>gluonfx-maven-plugin</artifactId>
                 <version>${gluonfx.plugin.version}</version>
                 <configuration>
-                    <target>${gluonfx.target}</target>
+                    <target>android</target>
                     <mainClass>${main.class}</mainClass>
+                    <sdk>
+                        <path>/home/renan/Android/Sdk</path>
+                        <platform>33</platform>
+                    </sdk>
                     <attachList>
                         <list>display</list>
                         <list>keyboard</list>
@@ -120,9 +124,7 @@
                         <list>storage</list>
                     </attachList>
                     <bundlesList>
-                        <list>com.mycompany.sample.AppManager.MainApp</list>
-                        <list>com.mycompany.sample.AppManager.Computer</list>
-                        <list>com.mycompany.sample.DataBaseManager.Database</list>
+
                     </bundlesList>
                     <reflectionList>
                         <list>com.mycompany.sample.AppManager.MainApp</list>
@@ -131,22 +133,28 @@
                         <list>com.mycompany.sample.AppManager.Computer</list>
                         <list>com.mycompany.sample.DataBaseManager.Database</list>
                     </reflectionList>
+                    <options>
+                        <option>-H:+UnlockExperimentalVMOptions</option>
+                    </options>
                 </configuration>
             </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.fxml</include>
+                    <include>**/*.css</include>
+                    <include>**/*.png</include>
+                </includes>
+            </resource>
+        </resources>
     </build>
-
     <profiles>
         <profile>
             <id>android</id>
             <properties>
                 <gluonfx.target>android</gluonfx.target>
-            </properties>
-        </profile>
-        <profile>
-            <id>ios</id>
-            <properties>
-                <gluonfx.target>ios</gluonfx.target>
             </properties>
         </profile>
     </profiles>
@@ -155,6 +163,10 @@
         <repository>
             <id>gluon-releases</id>
             <url>https://nexus.gluonhq.com/nexus/content/repositories/releases/</url>
+        </repository>
+        <repository>
+            <id>google</id>
+            <url>https://maven.google.com/</url>
         </repository>
     </repositories>
 </project>

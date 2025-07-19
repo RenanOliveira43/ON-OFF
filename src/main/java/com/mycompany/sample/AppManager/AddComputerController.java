@@ -22,7 +22,7 @@ public class AddComputerController {
             confirmLabel.setText("Computador carregado para edição.");
         }
         else{
-            confirmLabel.setText("Por favor, insira o nome, endereço MAC e IP do computador.");
+            confirmLabel.setText("Insira o nome, endereço MAC e IP do computador");
         }
     }
     
