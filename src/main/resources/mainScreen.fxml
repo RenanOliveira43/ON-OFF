@@ -8,30 +8,36 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<View maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="370.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.sample.AppManager.MainScreenController">
+<View fx:controller="com.mycompany.sample.AppManager.MainScreenController"
+      xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      stylesheets="@style.css"
+      prefWidth="370.0" prefHeight="600.0">
+
+    <top>
+        <StackPane styleClass="header" alignment="CENTER">
+            <Label text="ON/OFF" styleClass="title-label"/>
+        </StackPane>
+    </top>
+
     <center>
-        <VBox alignment="CENTER" spacing="20.0">
-         <children>
-            <Button mnemonicParsing="false" onAction="#on" prefWidth="90.0" text="ON">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-            <Button mnemonicParsing="false" onAction="#off" prefWidth="90.0" text="OFF" />
-            <Button mnemonicParsing="false" onAction="#reboot" prefWidth="90.0" text="REBOOT" />
-            <Button mnemonicParsing="false" onAction="#lock" prefWidth="90.0" text="LOCK" />
-            <Button mnemonicParsing="false" onAction="#goToAddComputerScreen" prefWidth="90.0" text="EDIT" />
-         </children>
+        <VBox alignment="CENTER" spacing="15">
+            <padding>
+                <Insets top="20" right="20" bottom="20" left="20"/>
+            </padding>
+            <children>
+                <Button text="ON" onAction="#on" styleClass="control-button"/>
+                <Button text="OFF" onAction="#off" styleClass="control-button"/>
+                <Button text="REBOOT" onAction="#reboot" styleClass="control-button"/>
+                <Button text="LOCK" onAction="#lock" styleClass="control-button"/>
+                <Button text="EDIT" onAction="#goToAddComputerScreen" styleClass="control-button"/>
+            </children>
         </VBox>
     </center>
-   <top>
-        <StackPane alignment="CENTER" prefHeight="50.0" styleClass="footer" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="ON/OFF" />
-         </children>
-      </StackPane>
-   </top>
-   <bottom>
-      <StackPane alignment="CENTER" prefHeight="50.0" styleClass="footer" BorderPane.alignment="CENTER" />
-   </bottom>
+
+
+    <bottom>
+        <StackPane styleClass="footer" alignment="CENTER"/>
+    </bottom>
+
 </View>

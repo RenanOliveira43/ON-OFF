@@ -4,11 +4,10 @@ import com.mycompany.sample.DataBaseManager.Database;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
+import java.net.URL;
 
 public class MainApp extends Application {
     protected static Stage stage;
@@ -28,17 +27,25 @@ public class MainApp extends Application {
         // setScene("/addComputer.fxml");
         primaryStage.show();
     }
-    
-    public static void setScene(String fxml) {
+
+    public static void setScene(String fxmlPath) {
         try {
-            Parent root = FXMLLoader.load(MainApp.class.getResource(fxml));
+            FXMLLoader loader = new FXMLLoader(MainApp.class.getResource(fxmlPath));
+            Parent root = loader.load();
 
-            Rectangle2D screenBounds = Screen.getPrimary().getBounds();
-            Scene scene = new Scene(root, screenBounds.getWidth(), screenBounds.getHeight());
+            Scene scene = new Scene(root); 
 
-            scene.getStylesheets().add(MainApp.class.getResource("/style.css").toExternalForm());
+            URL stylesheet = MainApp.class.getResource("/style.css");
+            if (stylesheet != null) {
+                scene.getStylesheets().add(stylesheet.toExternalForm());
+            }
+
             stage.setScene(scene);
-        } catch(Exception e) {
+            stage.setFullScreen(true);         // Ativa o modo fullscreen
+            stage.setFullScreenExitHint("");   // Remove a mensagem "Press ESC to exit full screen"
+            stage.show();
+
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
