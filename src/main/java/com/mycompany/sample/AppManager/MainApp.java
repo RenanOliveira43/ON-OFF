@@ -1,4 +1,6 @@
-package com.mycompany.sample;
+package com.mycompany.sample.AppManager;
+
+import com.mycompany.sample.DataBaseManager.Database;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,21 +12,20 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
     protected static Stage stage;
-    // protected static  Database db;
+    protected static Database db;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
-        // db = new Database(true);
+        db = new Database(true);
     
-        // if (db.getUsers().isEmpty()) {
-        //     setScene("/telaInicial.fxml");
-        // } else {
-        //     setScene("/telaEscolhaUsuario.fxml");
-        // }
-
-
-        setScene("/addComputer.fxml");
+        if (db.getComputers().isEmpty()) {
+            setScene("/addComputer.fxml");
+        } else {
+            setScene("/mainScreen.fxml");
+        }
+        
+        // setScene("/addComputer.fxml");
         primaryStage.show();
     }
     

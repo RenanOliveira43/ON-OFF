@@ -10,11 +10,17 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<View maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="370.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.sample.AddComputerController">
+<View maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="370.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.sample.AppManager.AddComputerController">
     <center>
       <VBox alignment="CENTER">
          <children>
               <VBox alignment="CENTER" spacing="20.0">
+               <Label fx:id="confirmLabel" />
+               <TextField fx:id="namePCTextField" promptText="Nome PC">
+                  <VBox.margin>
+                     <Insets left="35.0" right="35.0" />
+                  </VBox.margin>
+               </TextField>
                <TextField fx:id="macTextField" promptText="MAC ">
                   <VBox.margin>
                      <Insets left="35.0" right="35.0" />
@@ -27,7 +33,7 @@
               </VBox>
             <HBox alignment="CENTER" prefHeight="100.0" spacing="10.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#createComputer" text="Adicionar" />
+                  <Button mnemonicParsing="false" onAction="#createOrEditComputer" text="Adicionar" />
                </children>
             </HBox>
          </children>

@@ -1,0 +1,38 @@
+package com.mycompany.sample.AppManager;
+
+import javafx.fxml.FXML;
+
+public class MainScreenController {
+    private Computer computer;
+    
+    @FXML
+    public void teste() {
+        System.out.println("Teste");
+    }
+
+    @FXML
+    public void initialize() {
+        computer = MainApp.db.getComputers().get(0);
+        System.out.println("Computer initialized: " + computer);
+    }
+
+    @FXML
+    public void on() {
+
+    }
+
+    @FXML
+    public void off() {
+
+    }
+
+    @FXML
+    public void lock() {
+
+    }
+
+    @FXML
+    private void goToAddComputerScreen() {
+        MainApp.setScene("/addComputer.fxml");
+    }
+}
