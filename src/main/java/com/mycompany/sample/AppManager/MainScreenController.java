@@ -32,6 +32,11 @@ public class MainScreenController {
     }
 
     @FXML
+    public void reboot() {
+        computer.reboot();
+    }
+
+    @FXML
     private void goToAddComputerScreen() {
         MainApp.setScene("/addComputer.fxml");
     }
