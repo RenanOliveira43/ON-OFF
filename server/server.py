@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-from wakeonlan import send_magic_packet
 from dotenv import load_dotenv
 import platform
 import subprocess
@@ -31,10 +30,6 @@ def handle_command():
             return turn_off()
         elif cmd == "lock":
             return lock()
-        elif cmd == "turnOn":
-            if not mac:
-                return jsonify({"error": "MAC address required for turnOn"}), 400
-            return wake(mac)
         elif cmd == "reboot":
             return reboot()
         else:
@@ -62,10 +57,6 @@ def lock():
     else:
         raise NotImplementedError(f"Lock not implemented for {system}")
     return jsonify({"message": "Locked"}), 200
-
-def wake(mac_address):
-    send_magic_packet(mac_address)
-    return jsonify({"message": f"Wake-on-LAN packet sent to {mac_address}"}), 200
 
 def reboot():
     system = platform.system()
