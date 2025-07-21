@@ -1,16 +1,24 @@
 package com.mycompany.sample.AppManager;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import javafx.util.Duration;
 
 public class MainScreenController {
     private Computer computer;
     @FXML private Label statusLabel;
+    @FXML private Label namePCLabel;
     @FXML private Label statusServerLabel;
     
     @FXML
     public void initialize() {
         computer = MainApp.db.getComputers().get(0);
-        ping();
+        namePCLabel.setText(computer.getNamePC());
+        computer.ping();
+        startPingScheduler();
     }
 
     @FXML
@@ -42,19 +50,40 @@ public class MainScreenController {
         MainApp.setScene("/addComputer.fxml");
     }
 
-    @FXML
-    private void ping() {
-        int status = computer.ping();
+    private void startPingScheduler() {
+        Timeline pingTimeline = new Timeline(
+            new KeyFrame(Duration.seconds(4), event -> {
+                Task<Integer> pingTask = new Task<>() {
+                    @Override
+                    protected Integer call() {
+                        return computer.ping(); // executa em background
+                    }
+                };
 
-        if (status == 200) {
-            statusServerLabel.setText("Online");
-            statusServerLabel.setStyle("-fx-text-fill: green;");
-        } 
-        else {
-            statusServerLabel.setText("Offline");
-            statusServerLabel.setStyle("-fx-text-fill: red;");
-        }
+                pingTask.setOnSucceeded(e -> {
+                    int status = pingTask.getValue();
+                    updatePingStatus(status);
+                });
+
+                new Thread(pingTask).start(); // inicia a task
+            })
+        );
+
+        pingTimeline.setCycleCount(Timeline.INDEFINITE);
+        pingTimeline.play();
     }
+
+    private void updatePingStatus(int status) {
+    if (status == 200) {
+        statusServerLabel.setText("Online");
+        statusServerLabel.setStyle("-fx-text-fill: green;");
+    } else {
+        statusServerLabel.setText("Offline");
+        statusServerLabel.setStyle("-fx-text-fill: red;");
+    }
+}
+
+
 
     private void printStatus(int responseCode) {
         if (responseCode == 200) {

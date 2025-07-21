@@ -104,16 +104,16 @@ public class Computer {
         }
     }
 
-    public void reboot() {
-        sendCommand("reboot");
+    public int reboot() {
+        return sendCommand("reboot");
     }
 
-    public void turnOff() {
-        sendCommand("turnOff");
+    public int turnOff() {
+        return sendCommand("turnOff");
     }
 
-    public void lock() {
-        sendCommand("lock");
+    public int lock() {
+        return sendCommand("lock");
     }
 
     public int ping() {
@@ -128,7 +128,7 @@ public class Computer {
             return responseCode;
         } catch (Exception e) {
             e.printStackTrace();
-            return 500; // Retorna 500 em caso de erro
+            return 500;
         }
     }
 

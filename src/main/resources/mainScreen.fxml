@@ -5,39 +5,56 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<View fx:controller="com.mycompany.sample.AppManager.MainScreenController"
-      xmlns="http://javafx.com/javafx/23.0.1"
-      xmlns:fx="http://javafx.com/fxml/1"
-      stylesheets="@style.css"
-      prefWidth="370.0" prefHeight="600.0">
-
-    <top>
-        <StackPane styleClass="header" alignment="CENTER">
-            <Label text="ON/OFF" styleClass="title-label"/>
-        </StackPane>
-    </top>
+<View prefHeight="600.0" prefWidth="370.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.sample.AppManager.MainScreenController">
 
     <center>
         <VBox alignment="CENTER" spacing="15">
             <padding>
-                <Insets top="20" right="20" bottom="20" left="20"/>
+                <Insets bottom="20" left="20" right="20" top="20" />
             </padding>
             <children>
-                <Button text="ON" onAction="#on" styleClass="control-button"/>
-                <Button text="OFF" onAction="#off" styleClass="control-button"/>
-                <Button text="REBOOT" onAction="#reboot" styleClass="control-button"/>
-                <Button text="LOCK" onAction="#lock" styleClass="control-button"/>
-                <Button text="EDIT" onAction="#goToAddComputerScreen" styleClass="control-button"/>
+            <Label fx:id="statusLabel" />
+                <Button onAction="#on" styleClass="control-button" text="ON" />
+                <Button onAction="#off" styleClass="control-button" text="OFF" />
+                <Button onAction="#reboot" styleClass="control-button" text="REBOOT" />
+                <Button onAction="#lock" styleClass="control-button" text="LOCK" />
+                <Button onAction="#goToAddComputerScreen" styleClass="control-button" text="EDIT" />
             </children>
         </VBox>
     </center>
 
 
     <bottom>
-        <StackPane styleClass="footer" alignment="CENTER"/>
+        <StackPane alignment="CENTER" prefHeight="100.0" styleClass="footer">
+         <children>
+            <HBox fx:id="labelHbox" alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+               <children>
+                  <Label fx:id="namePCLabel" text="Label" />
+                  <Label fx:id="statusServerLabel" />
+               </children>
+               <padding>
+                  <Insets bottom="20.0" />
+               </padding>
+            </HBox>
+         </children></StackPane>
     </bottom>
+   <top>
+      <StackPane alignment="CENTER" prefHeight="50.0" styleClass="footer" BorderPane.alignment="CENTER">
+         <children>
+            <HBox fx:id="labelHbox1" alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+               <children>
+                  <Label fx:id="namePCLabel1" alignment="BOTTOM_CENTER" text="ON/OFF" />
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+            </HBox>
+         </children>
+      </StackPane>
+   </top>
 
 </View>
