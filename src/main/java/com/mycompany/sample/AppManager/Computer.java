@@ -27,7 +27,7 @@ public class Computer {
         // empty constructor
     }
 
-    private void sendCommand(String command) {
+    private int sendCommand(String command) {
         try {
             String targetUrl = "http://" + ip + ":8080/command";
             URL url = new URL(targetUrl);
@@ -55,8 +55,11 @@ public class Computer {
 
             int responseCode = conn.getResponseCode();
             System.out.println("Command '" + command + "' sent to " + namePC + " - Response Code: " + responseCode);
+
+            return responseCode;
         } catch (Exception e) {
             e.printStackTrace();
+            return 500;
         }
     }
 
@@ -72,7 +75,7 @@ public class Computer {
         return bytes;
     }
 
-    public void turnOn() {
+    public int turnOn() {
         try {
             byte[] macBytes = getMacBytes(macAddr);
             byte[] packet = new byte[6 + 16 * macBytes.length];
@@ -93,8 +96,11 @@ public class Computer {
             socket.close();
 
             System.out.println("Wake-on-LAN magic packet sent to " + namePC + " (" + macAddr + ")");
+
+            return 200;
         } catch (Exception e) {
             e.printStackTrace();
+            return 500;
         }
     }
 
@@ -110,6 +116,21 @@ public class Computer {
         sendCommand("lock");
     }
 
+    public int ping() {
+        try {
+            String targetUrl = "http://" + ip + ":8080/ping";
+            URL url = new URL(targetUrl);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Authorization", "Bearer " + AUTH_TOKEN);
+            int responseCode = conn.getResponseCode();
+            
+            return responseCode;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 500; // Retorna 500 em caso de erro
+        }
+    }
 
     @JsonProperty("namepc")
     public String getNamePC() {
