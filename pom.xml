@@ -14,11 +14,11 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.release>17</maven.compiler.release>
-        <javafx.version>17</javafx.version>
+        <javafx.version>20.0.2</javafx.version>
         <javafx.plugin.version>0.0.8</javafx.plugin.version>
         <gluonfx.plugin.version>1.0.27</gluonfx.plugin.version>
         <charm.version>6.2.3</charm.version>
-        <attach.version>4.0.22</attach.version>
+        <attach.version>4.0.23</attach.version>
         <main.class>com.mycompany.sample.AppManager.MainApp</main.class>
     </properties>
 

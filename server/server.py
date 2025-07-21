@@ -37,12 +37,16 @@ def handle_command():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+@app.route('/ping', methods=['GET'])
+def ping():
+    return jsonify({"status": "ok"}), 200
+
 def turn_off():
     system = platform.system()
     if system == "Windows":
-        os.system("shutdown /s /t 1")
+        subprocess.run("shutdown /s /t 1", shell=True)
     elif system == "Linux":
-        os.system("shutdown now")
+        subprocess.run("shutdown now", shell=True)
     else:
         raise NotImplementedError(f"Shutdown not implemented for {system}")
     return jsonify({"message": "Shutting down..."}), 200
@@ -62,11 +66,12 @@ def reboot():
     system = platform.system()
     
     if system == "Windows":
-        os.system("shutdown /r /t 1")
+        subprocess.run("shutdown /r /t 1", shell=True)
     elif system == "Linux":
-        os.system("reboot")
+        subprocess.run("reboot", shell=True)
     else:
         raise NotImplementedError(f"Reboot not implemented for {system}")
+    return jsonify({"message": "Rebooting..."}), 200
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)

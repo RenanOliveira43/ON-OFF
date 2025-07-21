@@ -11,8 +11,7 @@
     -fx-font-weight: bold;
 }
 
-/* Header / Footer */
-.header, .footer {
+.footer {
     -fx-background-color: #1C1C1C;
     -fx-padding: 10px;
 }
@@ -93,3 +92,9 @@
     -fx-text-fill: white;
     -fx-font-weight: normal;
 }
+
+/* #labelHbox {
+    -fx-background-color: #555555;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.4), 5, 0, 0, 2);
+} */
