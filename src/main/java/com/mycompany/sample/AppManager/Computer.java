@@ -121,17 +121,16 @@ public class Computer {
             String targetUrl = "http://" + ip + ":8080/ping";
             URL url = new URL(targetUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setConnectTimeout(2000); 
+            conn.setReadTimeout(2000);   
             conn.setRequestMethod("GET");
             conn.setRequestProperty("Authorization", "Bearer " + AUTH_TOKEN);
-            int responseCode = conn.getResponseCode();
-            
-            return responseCode;
+            return conn.getResponseCode();
         } catch (Exception e) {
             e.printStackTrace();
-            return 500;
+            return -1;
         }
     }
-
     @JsonProperty("namepc")
     public String getNamePC() {
         return namePC;

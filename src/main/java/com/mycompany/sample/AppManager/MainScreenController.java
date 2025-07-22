@@ -17,7 +17,6 @@ public class MainScreenController {
     public void initialize() {
         computer = MainApp.db.getComputers().get(0);
         namePCLabel.setText(computer.getNamePC());
-        // updatePingStatus(computer.ping());
         startPingScheduler();
     }
 
@@ -52,25 +51,23 @@ public class MainScreenController {
 
     private void startPingScheduler() {
         Timeline pingTimeline = new Timeline(
-            new KeyFrame(Duration.seconds(3), event -> {
-                Task<Integer> pingTask = new Task<>() {
-                    @Override
-                    protected Integer call() {
-                        return computer.ping(); 
-                    }
-                };
-
-                pingTask.setOnSucceeded(e -> {
-                    int status = pingTask.getValue();
-                    updatePingStatus(status);
-                });
-
-                new Thread(pingTask).start();
-            })
+            new KeyFrame(Duration.ZERO, event -> runPingTask()), 
+            new KeyFrame(Duration.seconds(3), event -> runPingTask()) 
         );
-
         pingTimeline.setCycleCount(Timeline.INDEFINITE);
         pingTimeline.play();
+    }
+
+    private void runPingTask() {
+        Task<Integer> pingTask = new Task<>() {
+            @Override
+            protected Integer call() {
+                return computer.ping();
+            }
+        };
+
+        pingTask.setOnSucceeded(e -> updatePingStatus(pingTask.getValue()));
+        new Thread(pingTask).start();
     }
 
     private void updatePingStatus(int status) {
@@ -85,11 +82,11 @@ public class MainScreenController {
     }
 
     private void printStatus(int responseCode) {
-        if (responseCode == 200) {
-            statusLabel.setText("Comando executado com Sucesso");
-        }
-        else {
-            statusLabel.setText("Erro ao executar comando");
+        switch (responseCode) {
+            case 200 -> statusLabel.setText("Comando executado com sucesso");
+            case 401 -> statusLabel.setText("Não autorizado");
+            case -1 -> statusLabel.setText("Falha na comunicação com o servidor");
+            default -> statusLabel.setText("Erro ao executar comando");
         }
     }
 }
