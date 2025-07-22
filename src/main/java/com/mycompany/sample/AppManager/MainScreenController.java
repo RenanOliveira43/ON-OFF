@@ -17,7 +17,7 @@ public class MainScreenController {
     public void initialize() {
         computer = MainApp.db.getComputers().get(0);
         namePCLabel.setText(computer.getNamePC());
-        computer.ping();
+        // updatePingStatus(computer.ping());
         startPingScheduler();
     }
 
@@ -52,11 +52,11 @@ public class MainScreenController {
 
     private void startPingScheduler() {
         Timeline pingTimeline = new Timeline(
-            new KeyFrame(Duration.seconds(4), event -> {
+            new KeyFrame(Duration.seconds(3), event -> {
                 Task<Integer> pingTask = new Task<>() {
                     @Override
                     protected Integer call() {
-                        return computer.ping(); // executa em background
+                        return computer.ping(); 
                     }
                 };
 
@@ -65,7 +65,7 @@ public class MainScreenController {
                     updatePingStatus(status);
                 });
 
-                new Thread(pingTask).start(); // inicia a task
+                new Thread(pingTask).start();
             })
         );
 
@@ -74,16 +74,15 @@ public class MainScreenController {
     }
 
     private void updatePingStatus(int status) {
-    if (status == 200) {
-        statusServerLabel.setText("Online");
-        statusServerLabel.setStyle("-fx-text-fill: green;");
-    } else {
-        statusServerLabel.setText("Offline");
-        statusServerLabel.setStyle("-fx-text-fill: red;");
+        if (status == 200) {
+            statusServerLabel.setText("Online");
+            statusServerLabel.setStyle("-fx-text-fill: green;");
+        } 
+        else {
+            statusServerLabel.setText("Offline");
+            statusServerLabel.setStyle("-fx-text-fill: red;");
+        }
     }
-}
-
-
 
     private void printStatus(int responseCode) {
         if (responseCode == 200) {
