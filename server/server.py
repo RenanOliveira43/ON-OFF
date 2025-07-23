@@ -20,22 +20,17 @@ def check_auth_token():
 def handle_command():
     data = request.get_json()
     cmd = data.get("command")
-    mac = data.get("mac")
 
-    if not cmd:
-        return jsonify({"error": "Missing command"}), 400
+    commandHandler = {"turnOff":turn_off, "lock": lock, "reboot": reboot}
+
+    if not cmd or cmd not in commandHandler:
+        return jsonify({"error": "Missing command or invalid command"}), 400
 
     try:
-        if cmd == "turnOff":
-            return turn_off()
-        elif cmd == "lock":
-            return lock()
-        elif cmd == "reboot":
-            return reboot()
-        else:
-            return jsonify({"error": "Unknown command", "command": cmd}), 400
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        handler = commandHandler.get(cmd)
+        return handler()
+    except NotImplementedError as e:
+        return jsonify({"error": str(e)}), 501
 
 @app.route('/ping', methods=['GET'])
 def ping():
