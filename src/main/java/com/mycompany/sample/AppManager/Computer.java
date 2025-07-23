@@ -32,47 +32,27 @@ public class Computer {
             String targetUrl = "http://" + ip + ":8080/command";
             URL url = new URL(targetUrl);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setConnectTimeout(3000); // 3 seconds
+            conn.setReadTimeout(3000);    // 3 seconds
+
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
-
             conn.setRequestProperty("Authorization", "Bearer " + AUTH_TOKEN);
-
             conn.setDoOutput(true);
 
             StringBuilder jsonPayload = new StringBuilder();
-            jsonPayload.append("{\"command\":\"").append(command).append("\"");
-
-            if ("turnOn".equalsIgnoreCase(command)) {
-                jsonPayload.append(",\"mac\":\"").append(macAddr).append("\"");
-            }
-
-            jsonPayload.append("}");
+            jsonPayload.append("{\"command\":\"").append(command).append("\"}");
 
             try (OutputStream os = conn.getOutputStream()) {
                 os.write(jsonPayload.toString().getBytes());
                 os.flush();
             }
 
-            int responseCode = conn.getResponseCode();
-            System.out.println("Command '" + command + "' sent to " + namePC + " - Response Code: " + responseCode);
-
-            return responseCode;
+            return conn.getResponseCode();
         } catch (Exception e) {
             e.printStackTrace();
-            return 500;
+            return 500; 
         }
-    }
-
-    private byte[] getMacBytes(String macStr) throws IllegalArgumentException {
-        String[] hex = macStr.split("([:\\-])");
-        if (hex.length != 6) {
-            throw new IllegalArgumentException("Invalid MAC address: " + macStr);
-        }
-        byte[] bytes = new byte[6];
-        for (int i = 0; i < 6; i++) {
-            bytes[i] = (byte) Integer.parseInt(hex[i], 16);
-        }
-        return bytes;
     }
 
     public int turnOn() {
@@ -104,6 +84,18 @@ public class Computer {
         }
     }
 
+    private byte[] getMacBytes(String macStr) throws IllegalArgumentException {
+        String[] hex = macStr.split("([:\\-])");
+        if (hex.length != 6) {
+            throw new IllegalArgumentException("Invalid MAC address: " + macStr);
+        }
+        byte[] bytes = new byte[6];
+        for (int i = 0; i < 6; i++) {
+            bytes[i] = (byte) Integer.parseInt(hex[i], 16);
+        }
+        return bytes;
+    }
+
     public int reboot() {
         return sendCommand("reboot");
     }
@@ -131,6 +123,7 @@ public class Computer {
             return -1;
         }
     }
+    
     @JsonProperty("namepc")
     public String getNamePC() {
         return namePC;
