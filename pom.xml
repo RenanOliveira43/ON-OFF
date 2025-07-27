@@ -136,6 +136,13 @@
                     <options>
                         <option>-H:+UnlockExperimentalVMOptions</option>
                     </options>
+                    <signing>
+                        <storetype>jks</storetype>
+                        <keystore>${user.home}/.android/debug.keystore</keystore>
+                        <storepass>android</storepass>
+                        <keyalias>androiddebugkey</keyalias>
+                        <keypass>android</keypass>
+                    </signing>
                 </configuration>
             </plugin>
         </plugins>

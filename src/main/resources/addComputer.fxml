@@ -21,7 +21,7 @@
 
             <Label fx:id="confirmLabel">
                 <font>
-                    <Font size="12.0" />
+                    <Font size="13.0" />
                 </font>
             </Label>
 
@@ -45,11 +45,11 @@
          </children></StackPane>
     </bottom>
    <top>
-      <StackPane prefHeight="50.0" styleClass="footer" BorderPane.alignment="CENTER">
+      <StackPane prefHeight="50.0" styleClass="header" BorderPane.alignment="CENTER">
          <children>
             <HBox fx:id="avatarContainer1" alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label contentDisplay="CENTER" text="Adicione seu PC" />
+                  <Label contentDisplay="CENTER" styleClass="header-label" text="Adicione seu PC" />
                </children>
                <StackPane.margin>
                   <Insets top="20.0" />

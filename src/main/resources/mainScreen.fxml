@@ -4,57 +4,46 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<View prefHeight="600.0" prefWidth="370.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.sample.AppManager.MainScreenController">
+<View prefHeight="600.0" prefWidth="370.0" stylesheets="@modern-style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.sample.AppManager.MainScreenController">
 
     <center>
-        <VBox alignment="CENTER" spacing="15">
+        <VBox alignment="CENTER" spacing="20">
             <padding>
-                <Insets bottom="20" left="20" right="20" top="20" />
+                <Insets bottom="30" left="30" right="30" top="30" />
             </padding>
             <children>
-            <Label fx:id="statusLabel" />
-                <Button onAction="#on" styleClass="control-button" text="ON" />
-                <Button onAction="#off" styleClass="control-button" text="OFF" />
-                <Button onAction="#reboot" styleClass="control-button" text="REBOOT" />
-                <Button onAction="#lock" styleClass="control-button" text="LOCK" />
-                <Button onAction="#goToAddComputerScreen" styleClass="control-button" text="EDIT" />
+                <Button onAction="#on" prefWidth="100.0" styleClass="control-button" text="ON" />
+                <Button onAction="#off" prefWidth="100.0" styleClass="control-button" text="OFF" />
+                <Button onAction="#reboot" prefWidth="100.0" styleClass="control-button" text="REBOOT" />
+                <Button onAction="#lock" prefWidth="100.0" styleClass="control-button" text="LOCK" />
+                <Button onAction="#goToAddComputerScreen" prefWidth="100.0" styleClass="control-button" text="EDIT" />
             </children>
         </VBox>
     </center>
 
-
     <bottom>
-        <StackPane alignment="CENTER" prefHeight="100.0" styleClass="footer">
-         <children>
-            <HBox fx:id="labelHbox" alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
-               <children>
-                  <Label fx:id="namePCLabel" text="Label" />
-                  <Label fx:id="statusServerLabel" />
-               </children>
-               <padding>
-                  <Insets bottom="20.0" />
-               </padding>
+        <StackPane prefHeight="80" styleClass="footer">
+            <HBox fx:id="labelHbox" alignment="CENTER" spacing="60">
+                <Label fx:id="namePCLabel" styleClass="footer-label" text="PC Name" />
+                <Label fx:id="statusServerLabel" styleClass="footer-label" text="Server Status" />
+            <padding>
+               <Insets bottom="50.0" />
+            </padding>
             </HBox>
-         </children></StackPane>
+        </StackPane>
     </bottom>
-   <top>
-      <StackPane alignment="CENTER" prefHeight="50.0" styleClass="footer" BorderPane.alignment="CENTER">
-         <children>
-            <HBox fx:id="labelHbox1" alignment="BOTTOM_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
-               <children>
-                  <Label fx:id="namePCLabel1" alignment="BOTTOM_CENTER" text="ON/OFF" />
-               </children>
-               <padding>
-                  <Insets top="20.0" />
-               </padding>
-            </HBox>
-         </children>
-      </StackPane>
-   </top>
+
+    <top>
+        <StackPane alignment="CENTER" prefHeight="50" styleClass="header">
+            <Label fx:id="namePCLabel1" styleClass="header-label" text="ON/OFF" />
+         <padding>
+            <Insets top="30.0" />
+         </padding>
+        </StackPane>
+    </top>
 
 </View>
