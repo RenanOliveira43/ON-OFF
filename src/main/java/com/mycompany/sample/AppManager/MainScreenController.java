@@ -22,26 +22,22 @@ public class MainScreenController {
 
     @FXML
     public void on() {
-        int responseCode = computer.turnOn();
-        printStatus(responseCode);
+        printStatus(computer.turnOn());
     }
 
     @FXML
     public void off() {
-        int responseCode = computer.turnOff();
-        printStatus(responseCode);
+        printStatus(computer.turnOff());
     }
 
     @FXML
     public void lock() {
-        int responseCode = computer.lock();
-        printStatus(responseCode);
+        printStatus(computer.lock());
     }
 
     @FXML
     public void reboot() {
-        int responseCode = computer.reboot();
-        printStatus(responseCode);
+        printStatus(computer.reboot());
     }
 
     @FXML
@@ -51,8 +47,7 @@ public class MainScreenController {
 
     private void startPingScheduler() {
         Timeline pingTimeline = new Timeline(
-            new KeyFrame(Duration.ZERO, event -> runPingTask()), 
-            new KeyFrame(Duration.seconds(3), event -> runPingTask()) 
+            new KeyFrame(Duration.seconds(2), event -> runPingTask()) 
         );
         pingTimeline.setCycleCount(Timeline.INDEFINITE);
         pingTimeline.play();

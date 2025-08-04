@@ -131,6 +131,7 @@
                         <list>com.mycompany.sample.AppManager.MainScreenController</list>
                         <list>com.mycompany.sample.AppManager.AddComputerController</list>
                         <list>com.mycompany.sample.AppManager.Computer</list>
+                        <list>com.mycompany.sample.AppManager.WakeOnLan</list>
                         <list>com.mycompany.sample.DataBaseManager.Database</list>
                     </reflectionList>
                     <options>

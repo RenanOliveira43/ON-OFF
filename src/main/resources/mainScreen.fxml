@@ -16,6 +16,7 @@
                 <Insets bottom="30" left="30" right="30" top="30" />
             </padding>
             <children>
+            <Label fx:id="statusLabel" />
                 <Button onAction="#on" prefWidth="100.0" styleClass="control-button" text="ON" />
                 <Button onAction="#off" prefWidth="100.0" styleClass="control-button" text="OFF" />
                 <Button onAction="#reboot" prefWidth="100.0" styleClass="control-button" text="REBOOT" />
